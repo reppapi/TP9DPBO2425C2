@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pembalap — Daftar</title>
+  <style>
+    :root{ --bg: #f7f8fb; --card: #ffffff; --muted: #6b7280; --accent: #2563eb; --danger: #ef4444; --border: #e6e9ef; --radius: 8px; font-family: system-ui, sans-serif; }
+    body{background:var(--bg);padding:20px;}
+    .container{max-width:980px;margin:36px auto;padding:18px;}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:12px;box-shadow: 0 1px 2px rgba(16,24,40,0.03);}
+    table{width:100%;border-collapse:collapse;font-size:14px}
+    thead th{ text-align:left;padding:12px 10px;border-bottom:1px solid var(--border);color:var(--muted);}
+    tbody td{padding:12px 10px;border-bottom:1px solid var(--bg);}
+    .col-id{width:48px;color:var(--muted);}
+    .col-actions{width:170px;text-align:right}
+    .btn{display:inline-block;padding:8px 10px;border-radius:6px;text-decoration:none;cursor:pointer;}
+    .btn-edit{color:var(--accent);} .btn-delete{color:var(--danger);border:none;background:transparent;margin-left:8px}
+    .btn-add{background:var(--accent);color:#fff;}
+    
+    /* NAVIGASI PENTING */
+    .nav { margin-bottom: 20px; font-weight: bold; }
+    .nav a { margin-right: 20px; text-decoration: none; color: grey; }
+    .nav a.active { color: blue; border-bottom: 2px solid blue; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    
+    <div class="nav">
+        <a href="index.php" class="active">Data Pembalap</a>
+        <a href="index.php?page=sponsor">Data Sponsor</a>
+    </div>
+
+    <div class="card">
+      <h1>Daftar Pembalap</h1>
+
+      <div style="overflow:auto;">
+        <table role="table" aria-label="Daftar Pembalap">
+          <thead>
+            <tr>
+              <th class="col-id">No</th>
+              <th>Nama</th>
+              <th>Tim</th>
+              <th>Negara</th>
+              <th>Poin Musim</th>
+              <th>Jumlah Menang</th>
+              <th class="col-actions">Aksi</th>
+            </tr>
+          </thead>
+          
+          <tbody>
+            DATA_TABEL
+          </tbody>
+          
+        </table>
+      </div>
+
+      <div style="margin-top:14px;display:flex;justify-content:space-between;align-items:center">
+        <div style="color:var(--muted);font-size:13px">DATA_TOTAL</div>
+        <div>
+          <a href="index.php?screen=add" class="btn btn-add" id="btn-add">+ Tambah Pembalap</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('click', function(e){
+      var d = e.target.closest && e.target.closest('.btn-delete');
+      if(!d) return;
+      var id = d.getAttribute('data-id');
+      if(!id) return;
+      if(!confirm('Yakin ingin menghapus data ini?')) return;
+      
+      var form = document.createElement('form'); form.method = 'POST'; form.action = 'index.php';
+      var actionInput = document.createElement('input'); actionInput.type = 'hidden'; actionInput.name = 'action'; actionInput.value = 'delete'; form.appendChild(actionInput);
+      var idInput = document.createElement('input'); idInput.type = 'hidden'; idInput.name = 'id'; idInput.value = id; form.appendChild(idInput);
+      document.body.appendChild(form); form.submit();
+    });
+  </script>
+</body>
+</html>

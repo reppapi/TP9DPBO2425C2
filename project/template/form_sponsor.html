@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <title>Form Sponsor</title>
+  <style>
+    :root {
+        --bg: #f7f8fb;
+        --card: #ffffff;
+        --muted: #6b7280;
+        --accent: #2563eb;
+        --border: #e6e9ef;
+        --radius: 8px;
+        font-family: system-ui, sans-serif;
+    }
+
+    body {
+        background: var(--bg);
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 700px;
+        margin: 36px auto;
+    }
+
+    .card {
+        background: var(--card);
+        padding: 20px;
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+    }
+
+    h1 {
+        margin-top: 0;
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 13px;
+        color: var(--muted);
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        margin-bottom: 12px;
+        box-sizing: border-box;
+    }
+
+    .btn {
+        padding: 10px 14px;
+        border-radius: 8px;
+        cursor: pointer;
+        border: none;
+    }
+
+    .btn-primary {
+        background: var(--accent);
+        color: #fff;
+    }
+
+    .btn-muted {
+        background: transparent;
+        color: var(--muted);
+        text-decoration: none;
+        border: 1px solid var(--border);
+    }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h1>DATA_JUDUL</h1>
+      
+      <form method="post" action="index.php?page=sponsor">
+        <input type="hidden" name="action_sponsor" value="add" id="sponsor-action">
+        <input type="hidden" name="id" value="" id="sponsor-id">
+
+        <div>
+          <label>Nama Brand</label>
+          <input name="namaBrand" type="text" value="" id="namaBrand" required placeholder="Contoh: Red Bull">
+        </div>
+        <div>
+          <label>Jenis Produk</label>
+          <input name="jenisProduk" type="text" value="" id="jenisProduk" required placeholder="Contoh: Minuman">
+        </div>
+        <div>
+          <label>Nilai Kontrak (Rp)</label>
+          <input name="nilaiKontrak" type="number" value="" id="nilaiKontrak" required placeholder="0">
+        </div>
+        <div>
+          <label>Durasi (Tahun)</label>
+          <input name="durasiTahun" type="number" value="" id="durasiTahun" required placeholder="1">
+        </div>
+
+        <div style="margin-top:15px; text-align:right;">
+          <a href="index.php?page=sponsor" class="btn btn-muted" style="margin-right:10px;">Batal</a>
+          <button type="submit" class="btn btn-primary">Simpan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
